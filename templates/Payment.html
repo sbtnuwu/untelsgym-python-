@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titulo</title>
+
+     <!-- Favicon -->
+    <link href="static/static/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="static/lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Libraries  -->
+
+     <link rel="stylesheet" href="static/css/bootstrap.min.css">
+     <link rel="stylesheet" href="static/css/style.css">
+
+
+
+
+</head>
+<body>
+
+<div class="container-fluid bg-dark px-0">
+        <div class="row gx-0">
+            <div class="col-lg-3 bg-dark d-none d-lg-block">
+                <a href="/" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <h1 class="m-0 display-4 text-primary text-uppercase">UNTELSGYM</h1>
+                </a>
+            </div>
+            <div class="col-lg-9">
+
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0 px-lg-5">
+                    <a href="/" class="navbar-brand d-block d-lg-none">
+                        <h1 class="m-0 display-4 text-primary text-uppercase">UNTELSGYM</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="/" class="nav-item nav-link active">Inicio</a>
+                            <!-- <a href="/plans" class="nav-item nav-link">Tipos de Rutina</a> -->
+                            <!-- <a href="/posts" class="nav-item nav-link">Publicaciones</a> -->
+                            <a href="/about" class="nav-item nav-link">Acerca de</a>
+                            <a href="/contact" class="nav-item nav-link">Contacto</a>
+                        </div>
+                        <a href="" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block" style="margin-left:280px;" >Registrase</a>
+                        <a href="/login" role="button" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block" >Ingresar</a>
+
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+</div>
+
+<form style="border-left: 100px solid #FFFFFF; border-right: 100px solid #FFFFFF; margin-top: 2px;" action="/proceed" method="post" enctype="multipart/form-data" >
+
+    <div class="container">
+        <h3 align="center" style="margin-top: 30px; margin-bottom: 50px;">Información de Usuario</h3>
+
+        <div class="row mb-4">
+    <div class="col-sm-12 col-md">
+        <label class="form-label" style="font-size: 20px;"><strong>Nombre:</strong> {{ first_name }} {{ last_name }}</label>
+    </div>
+       </div>
+        <div class="row mb-4">
+            <div class="col-sm-12 col-md">
+                <label class="form-label" style="font-size: 20px;"><strong>Teléfono:</strong> {{ phone_number }}</label>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-sm-12 col-md">
+                <label class="form-label" style="font-size: 20px;"><strong>Email: </strong>{{ email }}</label>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-sm-12 col-md">
+                <label class="form-label" style="font-size: 20px;"><strong>Tipo de rutina: </strong>{{ plan_title }}</label>
+            </div>
+        </div>
+        <!-- <div class="row mb-4">
+            <div class="col-sm-12 col-md">
+                <label class="form-label" style="font-size: 20px;"><strong>Tarifas:</strong> {{ fees }}</label>
+            </div>
+        </div> -->
+
+        <div class="row mb-4">
+    <div class="col-sm-12 col-md">
+        <label class="form-label" style="font-size: 20px;"><strong>Fecha actual: </strong><span id="currentDate"></span></label>
+    </div>
+       </div>
+
+<script>
+       const currentDate = new Date();
+       const formattedDate = currentDate.toISOString().split('T')[0];
+       document.getElementById('currentDate').innerText = formattedDate;
+</script>
+
+    <!-- Make Payment Section -->
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md">
+            <label class="form-label" style="font-size: 20px; color: orange; font-weight: bold;">Coloca el N° de tu Examen Médico (Solo numeros)</label>
+        </div>
+    </div>
+
+
+    <div class="row mb-4">
+    <div class="col-sm-12 col-md">
+        <input type="text" class="form-control" style="width: 400px;" placeholder="Enter Transaction ID" name="transaction_id">
+    </div>
+   </div>
+
+   <div class="mb-3">
+       <label for="photo" class="form-label">Seleccionar Foto:</label>
+      <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+   </div>
+
+<div class="row mb-4" style="margin-top: 100px; margin-bottom: 100px;">
+    <div class="col-sm-12 d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary btn-lg">Proceder</button>
+    </div>
+</div>
+
+
+    </div>
+</form>
+
+
+</body>
+</html>

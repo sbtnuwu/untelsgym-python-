@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+
+
+    <!-- Favicon -->
+    <link href="static/static/img/favicon.ico" rel="icon">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="static/lib/flaticon/font/flaticon.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Libraries Stylesheet -->
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+     <link rel="stylesheet" href="static/css/bootstrap.min.css">
+     <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+  <!-- Header Start -->
+    <div class="container-fluid bg-dark px-0">
+        <div class="row gx-0">
+            <div class="col-lg-3 bg-dark d-none d-lg-block">
+                <a href="/" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <h1 class="m-0 display-4 text-primary text-uppercase">UntelsGym</h1>
+                </a>
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0 px-lg-5">
+                    <a href="/" class="navbar-brand d-block d-lg-none">
+                        <h1 class="m-0 display-4 text-primary text-uppercase">UntelsGym</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <!-- <a href="/" class="nav-item nav-link active">Inicio</a> -->
+                            <!-- <a href="/plans" class="nav-item nav-link">Tipos de Rutina</a> -->
+                            <!-- <a href="/posts" class="nav-item nav-link">Publicaciones</a> -->
+                            <!-- <a href="/about" class="nav-item nav-link">Acerca de</a>
+                            <a href="/contact" class="nav-item nav-link">Contacto</a>-->
+                        </div>
+                        <a href="/new_trainer" role="button"  class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block" style="margin-right:35px;" >Añadir Entrenador</a>
+                        <a href="/logout" role="button" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block" >Cerrar Sesión</a>
+
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+<table class="table align-middle mb-0 bg-white" style="margin-top: 25px; margin-left: 25px; margin-right: 25px;">
+        <thead class="bg-light">
+            <tr>
+                <th>Nombre</th>
+                <th>especialización</th>
+                <th>Número de Contacto</th>
+                <th>Email</th>
+                <th>Edit</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for trainer in trainers %}
+            <tr>
+                <td>
+                      <div class="d-flex align-items-center">
+                      <a href="{{ url_for('trainer_member', trainer_id=trainer[0]) }}" class="fw-bold mb-1">{{ trainer[1] }}</a>
+                      </div>
+                </td>
+
+                <td>
+                    <div class="d-flex align-items-center">
+                            <p class="fw-bold mb-1">{{ trainer[2] }}</p>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center">
+                            <p class="fw-bold mb-1">{{ trainer[3] }}</p>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center">
+                            <p class="fw-bold mb-1">{{ trainer[4] }}</p>
+
+                    </div>
+                </td>
+                <td>
+                <form action="{{ url_for('toggle_status', trainer_id=trainer[0]) }}" method="POST">
+                    <button type="submit" class="btn btn-sm {% if trainer[5] == 'active' %}btn-success{% else %}btn-danger{% endif %}"
+                        style="width: 80px; height: 30px;">
+                        {{ 'Active' if trainer[5] == 'active' else 'Inactive' }}
+                    </button>
+                    <input type="hidden" name="status" value="{{ 'inactive' if trainer[5] == 'active' else 'active' }}">
+                </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</body>
+</html>

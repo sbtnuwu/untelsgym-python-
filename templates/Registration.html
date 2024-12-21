@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titulo</title>
+
+    <!-- Favicon -->
+    <link href="static/static/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="static/lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Libraries  -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<div class="container-fluid bg-dark px-0">
+    <div class="row gx-0">
+        <div class="col-lg-3 bg-dark d-none d-lg-block">
+            <a href="/" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                <h1 class="m-0 display-4 text-primary text-uppercase">UNTELSGYM</h1>
+            </a>
+        </div>
+        <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0 px-lg-5">
+                <a href="/" class="navbar-brand d-block d-lg-none">
+                    <h1 class="m-0 display-4 text-primary text-uppercase">UNTELSGYM</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="/" class="nav-item nav-link active">Inicio</a>
+                        <!-- <a href="/plans" class="nav-item nav-link">Tipos de Rutina</a> -->
+                        <!-- <a href="/posts" class="nav-item nav-link">Publicaciones</a> -->
+                        <a href="/about" class="nav-item nav-link">Acerca de</a>
+                        <a href="/contact" class="nav-item nav-link">Contacto</a>
+                    </div>
+<!--                    <a href="" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block" style="margin-left:280px;">Join Us</a>-->
+                    <a href="/login" role="button" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block">Ingresar</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<h2 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">Formulario de Registro </h2>
+<form style="border-left: 100px solid #FFFFFF; border-right: 100px solid #FFFFFF; margin-top: 2px;" action="/membership" method="post" onsubmit="return validateForm()">
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md">
+            <div data-mdb-input-init class="form-outline">
+                <input type="text" id="first_name" class="form-control" name="first_name" required minlength="2" maxlength="50" pattern="[A-Za-z]+" title="Por favor ingrese un nombre válido (solo letras)." />
+                <label class="form-label" for="first_name">Nombres</label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md">
+            <div data-mdb-input-init class="form-outline">
+                <input type="text" id="last_name" class="form-control" name="last_name" required minlength="2" maxlength="50" pattern="[A-Za-z]+" title="Por favor ingrese un apellido válido (solo letras)." />
+                <label class="form-label" for="last_name">Apellidos</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="text" id="address" class="form-control" name="address" required minlength="5" maxlength="100" />
+        <label class="form-label" for="address">Dirección</label>
+    </div>
+
+    <!-- Email input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="email" id="email" class="form-control" name="email" required />
+        <label class="form-label" for="email">Email</label>
+    </div>
+
+    <!-- Number input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="tel" id="phone_number" class="form-control" name="phone_number" required pattern="[0-9]{9}" title="Por favor ingrese teléfono de 9 dígitos." />
+        <label class="form-label" for="phone_number">Teléfono</label>
+    </div>
+
+    <!-- Username and Password -->
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md">
+            <div data-mdb-input-init class="form-outline">
+                <input type="text" id="username" class="form-control" name="username" required minlength="5" maxlength="20" />
+                <label class="form-label" for="username">Nombre de Usuario</label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md">
+            <div data-mdb-input-init class="form-outline">
+                <input type="password" id="password" class="form-control" name="password" required minlength="8" maxlength="20" />
+                <label class="form-label" for="password">Contraseña</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personal Details -->
+    <h3 style="text-align: center; margin-top: 100px; margin-bottom : 50px;">Datos Personales</h3>
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md">
+            <div data-mdb-input-init class="form-outline">
+                <input type="date" id="date_of_birth" class="form-control" name="date_of_birth" required />
+                <label class="form-label" for="date_of_birth">Fecha de Nacimiento</label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md">
+            <div class="form-outline">
+                <select class="form-select" id="gender" name="gender" required>
+                    <option value="" disabled selected>Seleccionar Género</option>
+                    <option value="male">Hombre</option>
+                    <option value="female">Mujer</option>
+                    <option value="other">Otros</option>
+                </select>
+                <label class="form-label" for="gender">Género</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weight and Height -->
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md">
+            <div data-mdb-input-init class="form-outline">
+                <input type="number" id="weight" class="form-control" name="weight" required min="30" max="300" />
+                <label class="form-label" for="weight">Peso (kg)</label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md">
+            <div data-mdb-input-init class="form-outline">
+                <input type="number" id="height" class="form-control" name="height" required min="50" max="300" />
+                <label class="form-label" for="height">Altura (cm)</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blood Group and Health Conditions -->
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md">
+            <div class="form-outline">
+                <select class="form-select" id="blood_group" name="blood_group" required>
+                    <option value="" disabled selected>Seleccionar Grupo Sanguineo</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+                <label class="form-label" for="blood_group">Grupo Sanguineo</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm-12">
+            <label class="form-label">Historial de Condiciones:</label>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="has_heart_problem" value="heartProblem" name="has_heart_problem">
+                <label class="form-check-label" for="has_heart_problem">
+                    Historial de Problemas del Corazónm
+                </label>
+            </div>
+            <div class="col-sm-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="has_heart_problem" value="heartProblem" name="has_heart_problem">
+                <label class="form-check-label" for="has_heart_problem">
+                    Historial de Problemas del Corazón
+                </label>
+            </div>
+             <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="has_hypertension" value="hypertension" name="has_hypertension">
+            <label class="form-check-label" for="has_hypertension">
+                Hypertension/Hypotension
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="has_diabetes" value="diabetes" name="has_diabetes">
+            <label class="form-check-label" for="has_diabetes">
+                Diabetes/Tiroides
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="has_breathing_problem" value="breathingProblem" name="has_breathing_problem">
+            <label class="form-check-label" for="has_breathing_problem">
+                Problemas Respiratorios o Pulmonares
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="has_hernia" value="hernia" name="has_hernia">
+            <label class="form-check-label" for="has_hernia">
+                Hernia
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="has_fracture_dislocation" value="fractureDislocation" name="has_fracture_dislocation">
+            <label class="form-check-label" for="has_fracture_dislocation">
+                Fracturas Dislocaciones
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="has_back_pain" value="backPain" name="has_back_pain">
+            <label class="form-check-label" for="has_back_pain">
+                Dolor en las articulaciones/músculos de la espalda
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="has_knee_problem" value="kneeProblem" name="has_knee_problem">
+            <label class="form-check-label" for="has_knee_problem">
+                Problemas de rodilla
+            </label>
+        </div>
+        </div>
+    </div>
+
+    <div class="form-outline" style="margin-top: 50px;">
+        <textarea class="form-control" id="recent_surgery_details" rows="4" name="recent_surgery_details" required minlength="10" maxlength="500"></textarea>
+        <label class="form-label" for="recent_surgery_details"> Explica cuáles son tus objetivos (ganar masa muscular o perder peso) </label>
+    </div>
+
+    <!-- Submit button -->
+    <div class="row mb-4" style="margin-top: 100px; margin-bottom: 100px;">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary btn-lg">Siguiente</button>
+        </div>
+    </div>
+</form>
+
+<!-- JavaScript for form validation -->
+<script>
+    function validateForm() {
+        // Example JavaScript validation (you can customize as needed)
+        var phoneRegex = /^\d{9}$/;
+        var phoneInput = document.getElementById('phone_number').value;
+        if (!phoneRegex.test(phoneInput)) {
+            alert('Por favor ingresa un número válido (9 dígitos)');
+            return false;
+        }
+
+        // Add more custom validation if required
+
+        return true; // Return true if the form is valid, false otherwise
+    }
+</script>
+
+</body>
+</html>

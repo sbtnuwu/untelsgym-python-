@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Control Administrador</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="static/static/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Libraries Stylesheet -->
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+  <!-- Header Start -->
+    <div class="container-fluid bg-dark px-0">
+        <div class="row gx-0">
+            <div class="col-lg-3 bg-dark d-none d-lg-block">
+                <a href="/" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <h1 class="m-0 display-4 text-primary text-uppercase">UNTELSGYM</h1>
+                </a>
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0 px-lg-5">
+                    <a href="/" class="navbar-brand d-block d-lg-none">
+                        <h1 class="m-0 display-4 text-primary text-uppercase">UNTELSGYM</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                        </div>
+                        <a href="/registration" role="button" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block" style="margin-right:35px;">Añadir Entrenador</a>
+                        <a href="/login" role="button" class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block">Salir</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <table class="table align-middle mb-0 bg-white" style="margin-top: 25px; margin-left: 25px; margin-right: 25px;">
+        <thead class="bg-light">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>N° de Contacto</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for member_data in data %}
+        <tr>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src="{{ url_for('static', filename='img/' + member_data['photo_filename']) }}" style="width: 50px; height: 50px" class="rounded-circle" />
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1">{{ member_data['first_name'] }} {{ member_data['last_name'] }}</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="text-muted mb-0">{{ member_data['email'] }}</p>
+            </td>
+            <td>
+                <p class="text-muted mb-0">{{ member_data['phone_number'] }}</p>
+            </td>
+            <td>
+                <form action="{{ url_for('toggle_member_status', member_id=member_data['member_id']) }}" method="POST">
+                    <button type="submit" class="btn btn-sm {% if member_data['status'] == 'active' %}btn-success{% else %}btn-danger{% endif %}" style="width: 80px; height: 30px;">
+                        {{ 'Active' if member_data['status'] == 'active' else 'Inactive' }}
+                    </button>
+                    <input type="hidden" name="status" value="{{ 'inactive' if member_data['status'] == 'active' else 'active' }}">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
